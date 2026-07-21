@@ -3,15 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.16",
+    "@ai-sdk/google": "^4.0.18",
+    "@ai-sdk/groq": "^4.0.12",
+    "@ai-sdk/openai": "^4.0.16",
+    "@ai-sdk/react": "^4.0.34",
+    "@anthropic-ai/sdk": "^0.112.3",
+    "@react-pdf/renderer": "^4.5.1",
+    "@stripe/stripe-js": "^9.10.0",
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.7",
+    "@tavily/core": "^0.7.6",
+    "ai": "^7.0.31",
+    "lucide-react": "^1.25.0",
     "next": "16.2.10",
+    "openai": "^6.48.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "stripe": "^22.3.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
