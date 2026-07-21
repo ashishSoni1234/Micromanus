@@ -386,8 +386,8 @@ export default function ChatLayoutClient({ initialChats, credits: initCredits, e
           {isSearchVisible && (
             <div className="px-4 pb-4">
               <div
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-150"
-                style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.1)" }}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200"
+                style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.2)", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="flex-shrink-0" style={{ color: "var(--text-muted)" }}>
                   <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>

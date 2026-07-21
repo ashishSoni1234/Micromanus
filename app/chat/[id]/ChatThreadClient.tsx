@@ -213,13 +213,13 @@ export default function ChatThreadClient({ chatId, initialMessages }: Props) {
   const inputBoxJSX = (
     <div className="flex flex-col gap-1 w-full">
       <div className="flex flex-col w-full">
-        <div className="relative rounded-t-[22px]">
-          <div className="flex flex-col rounded-[22px] relative bg-white py-3 w-full z-[2] shadow-[0px_12px_32px_0px_rgba(0,0,0,0.02)] border border-gray-200 focus-within:border-gray-300 transition-colors duration-300">
+        <div className="relative rounded-t-[24px]">
+          <div className="flex flex-col rounded-[24px] relative bg-white py-3 w-full z-[2] shadow-[0_4px_16px_rgba(0,0,0,0.04)] border border-gray-300 focus-within:border-gray-400 focus-within:shadow-[0_6px_24px_rgba(0,0,0,0.08)] transition-all duration-300">
             <div className="contents">
-              <div className="chat-input-editor overflow-auto pl-4 pr-14 bg-transparent pt-1 pb-1 border-0 w-full min-h-[50px] max-h-[216px]">
+              <div className="chat-input-editor overflow-auto pl-6 pr-14 bg-transparent pt-3.5 pb-3.5 border-0 w-full min-h-[50px] max-h-[216px] flex items-center">
                 <textarea
                   ref={textareaRef}
-                  className="w-full outline-none resize-none bg-transparent leading-[24px] text-[15px] placeholder:text-gray-400 text-gray-900"
+                  className="w-full outline-none resize-none bg-transparent leading-[26px] text-[15px] placeholder:text-gray-400 text-gray-900 my-auto"
                   placeholder={credits <= 0 ? "Out of credits" : "Assign a task or type / for more"}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -243,12 +243,13 @@ export default function ChatThreadClient({ chatId, initialMessages }: Props) {
                   type="button"
                   onClick={() => handleFormSubmit()}
                   disabled={isLoading || credits <= 0 || !input.trim()}
-                  className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors gap-[6px] text-sm rounded-full p-0 w-8 h-8 min-w-0"
+                  className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-200 gap-[6px] text-sm rounded-full p-0 w-8 h-8 min-w-0"
                   style={{
-                    background: input.trim() && credits > 0 && !isLoading ? "#111827" : "#e5e7eb",
+                    background: input.trim() && credits > 0 && !isLoading ? "#111827" : "#f3f4f6",
                     color: input.trim() && credits > 0 && !isLoading ? "#ffffff" : "#9ca3af",
                     opacity: credits <= 0 ? 0.5 : 1,
-                    cursor: (isLoading || credits <= 0 || !input.trim()) ? "not-allowed" : "pointer"
+                    cursor: (isLoading || credits <= 0 || !input.trim()) ? "not-allowed" : "pointer",
+                    transform: input.trim() && credits > 0 && !isLoading ? "scale(1.05)" : "scale(1)"
                   }}
                 >
                    {isLoading ? (
