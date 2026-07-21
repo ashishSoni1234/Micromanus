@@ -48,7 +48,7 @@ export default function PaywallClient({ paymentStatus, errorParam, userEmail }: 
       const res = await fetch("/api/stripe/verify-payment");
       const data = await res.json();
       if (data.cleared) {
-        router.push("/chat");
+        window.location.href = "/chat";
       }
     } catch {
       // silently ignore

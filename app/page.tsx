@@ -22,51 +22,76 @@ export default async function LandingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] text-gray-900 relative flex flex-col items-center justify-center p-4 font-sans overflow-hidden">
+    <main className="min-h-screen bg-[#050505] text-white relative flex flex-col items-center justify-center p-4 font-sans overflow-hidden">
+      
+      {/* 1. Premium Dark Grid & Glow Background */}
       <div 
-        className="absolute inset-0 pointer-events-none z-0" 
+        className="absolute inset-0 pointer-events-none z-0 opacity-100" 
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #d1d5db 1px, transparent 0)',
-          backgroundSize: '32px 32px'
+          backgroundImage: `
+            radial-gradient(circle at 50% 0%, rgba(79, 110, 247, 0.15), transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(124, 92, 252, 0.08), transparent 50%),
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '100% 100%, 100% 100%, 32px 32px, 32px 32px',
+          backgroundPosition: '0 0, 0 0, 0 0'
         }}
       />
+      {/* Vignette effect to darken edges */}
+      <div className="absolute inset-0 bg-[#050505] pointer-events-none z-0 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_80%)]" />
 
-      {/* Top Left Logo (MicroManus) */}
-      <div className="absolute top-6 left-6 flex items-center gap-2 z-10 cursor-default">
-        <svg className="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-          <path d="M14 4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-          <path d="M10 4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-          <path d="M10 11H6a4 4 0 0 0-4 4v3a4 4 0 0 0 4 4h5.5c1 0 2-.4 2.8-1.1l6.5-6.1a2 2 0 0 0-2.8-2.8L14 15"/>
-        </svg>
-        <span className="font-bold text-xl tracking-tight">MicroManus</span>
+      {/* 2. Top Left Logo (MicroManus) */}
+      <div className="absolute top-8 left-8 flex items-center gap-3 z-10 cursor-default animate-fade-in-up">
+        <div className="p-2 bg-white/[0.03] rounded-xl border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.03)] backdrop-blur-md">
+          <svg className="w-5 h-5 text-gray-100" viewBox="0 0 24 24" fill="none" stroke="url(#logo-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <defs>
+              <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fff" />
+                <stop offset="100%" stopColor="#9ca3af" />
+              </linearGradient>
+            </defs>
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+            <path d="M14 4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+            <path d="M10 4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+            <path d="M10 11H6a4 4 0 0 0-4 4v3a4 4 0 0 0 4 4h5.5c1 0 2-.4 2.8-1.1l6.5-6.1a2 2 0 0 0-2.8-2.8L14 15"/>
+          </svg>
+        </div>
+        <span className="font-semibold text-xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">MicroManus</span>
       </div>
 
-      <div className="relative z-10 w-full flex flex-col items-center animate-fade-in -mt-24">
-        {/* Top Part: Icon & Text */}
-        <div className="flex flex-col items-center mb-8">
-          {/* Center Icon */}
-          <div className="mb-6">
-            <svg className="w-16 h-16 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-              <path d="M14 4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-              <path d="M10 4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-              <path d="M10 11H6a4 4 0 0 0-4 4v3a4 4 0 0 0 4 4h5.5c1 0 2-.4 2.8-1.1l6.5-6.1a2 2 0 0 0-2.8-2.8L14 15"/>
-            </svg>
+      <div className="relative z-10 w-full flex flex-col items-center -mt-12">
+        
+        {/* 3. Title & Subtitle with Text Gradient */}
+        <div className="flex flex-col items-center mb-12 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md mb-6 shadow-[0_0_15px_rgba(79,110,247,0.1)]">
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span className="text-xs font-medium text-gray-300 tracking-wide uppercase">Deep Research Agent</span>
           </div>
-
-          {/* Title & Subtitle */}
-          <h1 className="text-3xl font-semibold mb-2 text-center tracking-tight">Sign in or sign up</h1>
-          <p className="text-gray-500 text-sm text-center">Start creating with MicroManus</p>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-gray-500 leading-tight">
+            Unlock the power <br className="hidden sm:block" /> of research
+          </h1>
+          <p className="text-gray-400 text-lg text-center font-light tracking-wide max-w-md">
+            Sign in to start creating with MicroManus.
+          </p>
         </div>
 
-        {/* Buttons Card */}
-        <div className="w-full max-w-[340px] bg-white p-6 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col gap-4">
-          <form action={signInWithGoogle} className="w-full">
+        {/* 4. Buttons Card (Glassmorphism + Subtle Glow) */}
+        <div 
+          className="w-full max-w-[380px] bg-white/[0.02] backdrop-blur-2xl p-8 rounded-[32px] border border-white/[0.08] shadow-[0_20px_40px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col gap-4 relative overflow-hidden group animate-fade-in-up"
+          style={{ animationDelay: '200ms' }}
+        >
+          {/* Subtle hover glow on card */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          
+          <form action={signInWithGoogle} className="w-full relative z-10">
             <button
               type="submit"
-              className="w-full relative flex items-center justify-center h-[64px] px-4 rounded-[14px] border border-gray-200 bg-white hover:bg-gray-50 transition-colors shadow-sm text-[15px] font-semibold text-gray-700"
+              className="w-full relative flex items-center justify-center h-[56px] px-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/[0.2] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:-translate-y-1 text-[15px] font-medium text-gray-200 group/btn overflow-hidden"
             >
+              {/* Shine effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
               <span className="absolute left-5">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -79,19 +104,25 @@ export default async function LandingPage() {
             </button>
           </form>
 
-          <form action={signInWithGitHub} className="w-full">
+          <form action={signInWithGitHub} className="w-full relative z-10">
             <button
               type="submit"
-              className="w-full relative flex items-center justify-center h-[64px] px-4 rounded-[14px] border border-gray-200 bg-white hover:bg-gray-50 transition-colors shadow-sm text-[15px] font-semibold text-gray-700"
+              className="w-full relative flex items-center justify-center h-[56px] px-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/[0.2] transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:-translate-y-1 text-[15px] font-medium text-gray-200 group/btn overflow-hidden"
             >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
               <span className="absolute left-5">
-                <svg className="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-5 h-5 text-gray-200" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                 </svg>
               </span>
               Continue with GitHub
             </button>
           </form>
+          
+          {/* Subtle footer text inside card */}
+          <p className="text-[11px] text-gray-500 text-center mt-3 w-full font-medium tracking-wide">
+            By continuing, you agree to our Terms & Privacy Policy
+          </p>
         </div>
       </div>
     </main>

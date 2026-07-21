@@ -5,6 +5,12 @@
 // - Authenticated + cleared → allowed through
 
 import { NextResponse, type NextRequest } from "next/server";
+
+// Polyfill self for Node.js environments (Next.js 16 sometimes runs proxy in Node instead of Edge)
+if (typeof global !== "undefined" && typeof global.self === "undefined") {
+  (global as any).self = global;
+}
+
 import { createServerClient } from "@supabase/ssr";
 
 // Routes that are always public (no auth required)
@@ -71,6 +77,15 @@ export async function proxy(request: NextRequest) {
 
   // --- Routing logic ---
 
+  // Helper to redirect while preserving refreshed cookies
+  function redirectWithCookies(url: URL) {
+    const res = NextResponse.redirect(url);
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      res.cookies.set(cookie.name, cookie.value, cookie as any);
+    });
+    return res;
+  }
+
   // 1. No user → allow public routes, redirect everything else to landing
   if (!user) {
     if (PUBLIC_ROUTES.includes(pathname)) {
@@ -78,7 +93,7 @@ export async function proxy(request: NextRequest) {
     }
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/";
-    return NextResponse.redirect(redirectUrl);
+    return redirectWithCookies(redirectUrl);
   }
 
   // 2. Authenticated user — check paywall status
@@ -103,7 +118,7 @@ export async function proxy(request: NextRequest) {
   if (!userData.paywall_cleared) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/paywall";
-    return NextResponse.redirect(redirectUrl);
+    return redirectWithCookies(redirectUrl);
   }
 
   // 4. Everything is fine — allow the request
